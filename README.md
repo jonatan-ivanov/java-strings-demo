@@ -1,6 +1,6 @@
 # java-strings-demo
 
-Demo project for the `Confusing Java Strings` talk.
+Demo project for my "Confusing Java Strings" article/talk.
 
 # Example Output
 
