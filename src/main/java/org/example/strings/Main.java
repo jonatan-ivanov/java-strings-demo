@@ -2,6 +2,7 @@ package org.example.strings;
 
 import static java.lang.System.getProperty;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
@@ -20,25 +21,32 @@ public class Main {
         System.out.printf("%s %s (%s)%n", getProperty("java.vm.vendor"), getProperty("java.vm.version"), getProperty("java.vm.name"));
 
         System.out.println("\n--- Length ---");
-        transformAndPrint(TEST_STRINGS, String::length);
+        transformAndPrint(String::length, TEST_STRINGS);
 
         System.out.println("\n--- Code Point Count ---");
-        transformAndPrint(TEST_STRINGS, Main::codePointCount);
+        transformAndPrint(Main::codePointCount, TEST_STRINGS);
 
         System.out.println("\n--- Code Points ---");
-        transformAndPrint(TEST_STRINGS, Main::codePoints);
+        transformAndPrint(Main::codePoints, TEST_STRINGS);
 
         System.out.println("\n--- Code Units ---");
-        transformAndPrint(TEST_STRINGS, Main::codeUnits);
+        transformAndPrint(Main::codeUnits, TEST_STRINGS);
 
         System.out.println("\n--- Buggy Reverse ---");
-        transformAndPrint(TEST_STRINGS, Main::buggyReverse);
+        transformAndPrint(Main::buggyReverse, "ab𝕔", "𝕒𝕓𝕔");
 
         System.out.println("\n--- Reverse ---");
-        transformAndPrint(TEST_STRINGS, Main::reverse);
+        transformAndPrint(Main::reverse, "ab𝕔", "𝕒𝕓𝕔");
+
+        System.out.println("\n--- Substring(0,5) ---");
+        transformAndPrint(Main::substring, "𝕒𝕓𝕔", "abc👩‍💻", "a👩‍💻");
     }
 
-    private static void transformAndPrint(Collection<String> collection, Function<String, ?> function) {
+    private static void transformAndPrint(Function<String, ?> function, String... array) {
+        transformAndPrint(function, Arrays.stream(array).toList());
+    }
+
+    private static void transformAndPrint(Function<String, ?> function, Collection<String> collection) {
         collection.forEach(item -> System.out.println(item + " -> " + function.apply(item)));
     }
 
@@ -71,8 +79,11 @@ public class Main {
         return result;
     }
 
-
     private static String reverse(String str) {
         return new StringBuilder(str).reverse().toString();
+    }
+
+    private static String substring(String str) {
+        return str.substring(0, 5);
     }
 }

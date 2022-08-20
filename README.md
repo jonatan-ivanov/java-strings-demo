@@ -5,7 +5,7 @@ Demo project for my "Confusing Java Strings" article/talk.
 # Example Output
 
 ```
-AdoptOpenJDK 15+36 (OpenJDK 64-Bit Server VM)
+Eclipse Adoptium 18.0.1+10 (OpenJDK 64-Bit Server VM)
 
 --- Length ---
 Java -> 4
@@ -36,16 +36,15 @@ Java -> \u4A \u61 \u76 \u61
 👩‍💻❤️🍵 -> \uD83D \uDC69 \u200D \uD83D \uDCBB \u2764 \uFE0F \uD83C \uDF75
 
 --- Buggy Reverse ---
-Java -> avaJ
-我喜欢茶 -> 茶欢喜我
+ab𝕔 -> ??ba
 𝕒𝕓𝕔 -> ?𝕓𝕒?
-👩❤☕ -> ☕❤??
-👩‍💻❤️🍵 -> ??️❤??‍??
 
 --- Reverse ---
-Java -> avaJ
-我喜欢茶 -> 茶欢喜我
+ab𝕔 -> 𝕔ba
 𝕒𝕓𝕔 -> 𝕔𝕓𝕒
-👩❤☕ -> ☕❤👩
-👩‍💻❤️🍵 -> 🍵️❤💻‍👩
+
+--- Substring(0,5) ---
+𝕒𝕓𝕔 -> 𝕒𝕓?
+abc👩‍💻 -> abc👩
+a👩‍💻 -> a👩‍?
 ```
